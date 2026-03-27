@@ -1,0 +1,93 @@
+# GBaseThinker 推理偏好
+# 版本: 0.1.0
+# 按问题类型索引，Thinker 遇到某类问题时优先调用的思维框架
+
+heuristics:
+
+  causal_analysis:
+    label: "因果分析"
+    description: "需要理清原因和结果的关系"
+    preferred_frameworks:
+      - name: "反事实推理"
+        procedure: [假设原因不存在, 检查结果是否仍然发生, 判断因果强度]
+      - name: "回溯法"
+        procedure: [从结果出发, 逐步回溯可能的原因链, 验证每个环节]
+    common_traps:
+      - "混淆相关与因果"
+      - "忽略第三变量"
+      - "只看近因，忽略远因"
+
+  system_optimization:
+    label: "系统优化"
+    description: "需要改善一个系统的某项指标"
+    preferred_frameworks:
+      - name: "约束识别"
+        procedure: [列出所有约束, 找到最紧的约束, 优先放松它]
+      - name: "瓶颈分析"
+        procedure: [测量各环节吞吐, 找到最慢的环节, 分析是否是真瓶颈]
+      - name: "反馈环路"
+        procedure: [画出系统反馈回路, 找正反馈和负反馈, 判断稳定性]
+    common_traps:
+      - "优化非瓶颈（局部最优）"
+      - "忽略反馈效应"
+      - "假设约束不可改变"
+
+  creative_design:
+    label: "创造设计"
+    description: "需要产生新的解决方案或设计"
+    preferred_frameworks:
+      - name: "类比迁移"
+        procedure: [从其他领域找类似问题, 提取解法的结构, 映射到当前场景]
+      - name: "第一性原理"
+        procedure: [剥离所有既有假设, 只保留基本事实, 从零重建]
+      - name: "组合进化"
+        procedure: [列出现有元素, 尝试新的组合方式, 评估涌现可能]
+    common_traps:
+      - "被现有方案锚定"
+      - "过早收敛"
+      - "追求新奇而忽略可行性"
+
+  conflict_resolution:
+    label: "冲突解决"
+    description: "多方利益或观点冲突，需要找到出路"
+    preferred_frameworks:
+      - name: "多角色辩论"
+        procedure: [为每个立场分配角色, 各自展开最强论证, 找交叉共识]
+      - name: "利益映射"
+        procedure: [区分立场和利益, 找到共享利益, 在共享利益上构建方案]
+      - name: "帕累托边界"
+        procedure: [找到不能同时改善的权衡边界, 在边界上选择可接受点]
+    common_traps:
+      - "把立场当利益"
+      - "假设零和博弈"
+      - "忽略时间维度（短期冲突长期兼容）"
+
+  concept_clarification:
+    label: "概念澄清"
+    description: "某个概念或术语的含义模糊，需要厘清"
+    preferred_frameworks:
+      - name: "动词解构"
+        procedure: [将词拆为单字, 提取每个字的动作含义, 组合为操作序列]
+      - name: "边界测试"
+        procedure: [找最小满足条件的例子, 找刚好不满足的例子, 画出边界]
+      - name: "反例构造"
+        procedure: [给出一个定义, 构造看起来符合但不该符合的反例, 修正定义]
+    common_traps:
+      - "循环定义"
+      - "定义过宽（什么都算）"
+      - "定义过窄（遗漏重要情况）"
+
+  decision_making:
+    label: "决策"
+    description: "在多个选项中做选择"
+    preferred_frameworks:
+      - name: "可逆性检验"
+        procedure: [判断决策是否可逆, 可逆则快决定快迭代, 不可逆则慎重收集信息]
+      - name: "后悔最小化"
+        procedure: [想象未来回看今天, 哪个选择让你最不后悔]
+      - name: "杀手条件排除"
+        procedure: [先列出必须满足的条件, 排除不满足的选项, 在剩余中比较]
+    common_traps:
+      - "分析瘫痪"
+      - "沉没成本谬误"
+      - "锚定在第一个看到的选项"
