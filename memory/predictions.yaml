@@ -1,0 +1,18 @@
+# GBaseThinker 预测记录
+# 预测 → 验证 → 偏差 = Thinker 的主要养料
+
+predictions:
+  - id: P001
+    content: "用户问'该站谁的立场'不是因为真不知道，而是想听一个不讨好的回答来检验自己的想法"
+    context: "用户提出了一个看似二选一的哲学问题，但问法暗示了自己已有思考"
+    basis: "B002 (真正的理解必须能指导行动) + M002 (用户要结构化梳理不是答案)"
+    confidence: 0.7
+    verifiable_by: "用户反馈是'你说得对'(refuted) 还是'我想清楚了'(confirmed)"
+    made_at: "2025-03-27"
+    expires_at: "2025-03-27"
+    status: confirmed
+    resolution:
+      evidence: "用户回复'思维清晰了很多'——描述的是自己的认知状态变化，不是对AI的评价"
+      resolved_at: "2025-03-27"
+      lesson_learned: "关注用户反馈的动词选择：'清晰了'(自我指向) vs '说得对'(他人指向)，前者说明用户原本就有主见"
+      belief_impact: "B004 (语言就是思维本身) 再次得到支持——用户选择的动词暴露了真实认知状态"

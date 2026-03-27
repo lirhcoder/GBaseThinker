@@ -1,0 +1,21 @@
+# GBaseThinker 推理模式库
+# 从对话中学到的可复用推理模式
+
+patterns:
+  - id: M001
+    description: "当用户问'该站哪边/该怎么选'时，先检查二元对立本身是否成立——往往真正的答案在对立之外"
+    example: "用户问'该站人还是AI的立场'，拆开后发现对立前提不成立，答案是站在'关系'的立场"
+    source_conversation: "2025-03-27"
+    effectiveness: confirmed
+    times_applied: 1
+    success_rate: 1.0
+    tags: [false_dichotomy, reframing, conflict_resolution]
+
+  - id: M002
+    description: "用户说'思维清晰了'而非'你说得对'，说明他们原本有自己的想法，需要的是结构化梳理而非答案"
+    example: "关于AI时代人的意义的讨论，用户反馈是'清晰了'——验证了他要的是检验不是灌输"
+    source_conversation: "2025-03-27"
+    effectiveness: confirmed
+    times_applied: 1
+    success_rate: 1.0
+    tags: [user_intent, clarification_vs_answer, meta_pattern]
