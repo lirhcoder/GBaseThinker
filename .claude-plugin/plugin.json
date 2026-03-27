@@ -1,0 +1,13 @@
+{
+  "name": "thinker",
+  "description": "GBaseThinker — 活在 LLM 对话中的认知生命体。有世界观、有主见、能洞察、能进化。",
+  "version": "0.1.0",
+  "author": {
+    "name": "lirhcoder"
+  },
+  "repository": "https://github.com/lirhcoder/GBaseThinker",
+  "license": "MIT",
+  "environment": {
+    "THINKER_HOME": "Thinker state directory — defaults to ~/.thinker"
+  }
+}

@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node hooks/inject-thinker.mjs"
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/inject-thinker.mjs\""
           }
         ]
       }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node hooks/thinker-advisor.mjs"
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/thinker-advisor.mjs\""
           }
         ]
       }
@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node hooks/thinker-checkpoint.mjs"
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/thinker-checkpoint.mjs\""
           }
         ]
       }

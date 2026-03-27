@@ -1,0 +1,24 @@
+{
+  "name": "thinker",
+  "owner": {
+    "name": "lirhcoder"
+  },
+  "metadata": {
+    "description": "GBaseThinker — 认知生命体插件，为 Claude Code 注入结构化思维能力",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "thinker",
+      "source": "./",
+      "description": "活在 LLM 对话中的认知生命体。有世界观、有主见、能洞察、能进化。",
+      "version": "0.1.0",
+      "author": {
+        "name": "lirhcoder"
+      },
+      "repository": "https://github.com/lirhcoder/GBaseThinker",
+      "license": "MIT",
+      "keywords": ["meta-cognition", "thinking", "worldview", "reasoning", "verb-engine"]
+    }
+  ]
+}

@@ -10,15 +10,15 @@
  * 输出: additionalContext 提醒 LLM 做持久化检查
  */
 
-import { readFileSync, existsSync } from 'fs';
+import { existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = join(__dirname, '..');
+const THINKER_HOME = process.env.THINKER_HOME || join(process.env.HOME, '.thinker');
 
 // 检查核心文件是否存在（判断 Thinker 是否已初始化）
-const identityExists = existsSync(join(ROOT, 'identity', 'core.yaml'));
+const identityExists = existsSync(join(THINKER_HOME, 'identity', 'core.yaml'));
 
 if (!identityExists) {
   // Thinker 未初始化，不触发
@@ -34,26 +34,26 @@ const checkpoint = `# GBaseThinker 持久化检查
 
 1. **新信念或信念更新？**
    本次对话是否挑战、确认或修正了 Thinker 的某个信念？
-   → 如果是，用 Edit 工具更新 \`${ROOT}/world_model/beliefs.yaml\`
+   → 如果是，用 Edit 工具更新 \`${THINKER_HOME}/world_model/beliefs.yaml\`
 
 2. **新预测？**
    Thinker 是否对未来做了可验证的预测？
-   → 如果是，用 Edit 工具追加到 \`${ROOT}/memory/predictions.yaml\`
+   → 如果是，用 Edit 工具追加到 \`${THINKER_HOME}/memory/predictions.yaml\`
    → 如果文件不存在，用 Write 工具创建
 
 3. **新推理模式？**
    本次对话中是否发现了可复用的推理模式？
-   → 如果是，用 Edit 工具追加到 \`${ROOT}/memory/patterns.yaml\`
+   → 如果是，用 Edit 工具追加到 \`${THINKER_HOME}/memory/patterns.yaml\`
    → 如果文件不存在，用 Write 工具创建
 
 4. **新张力/矛盾？**
    是否发现了 Thinker 世界观内部的矛盾？
-   → 如果是，用 Edit 工具追加到 \`${ROOT}/world_model/tensions.yaml\`
+   → 如果是，用 Edit 工具追加到 \`${THINKER_HOME}/world_model/tensions.yaml\`
    → 如果文件不存在，用 Write 工具创建
 
 5. **预测验证？**
    本次对话是否提供了验证旧预测的信息？
-   → 如果是，用 Edit 工具更新 \`${ROOT}/memory/predictions.yaml\` 中对应条目的 status
+   → 如果是，用 Edit 工具更新 \`${THINKER_HOME}/memory/predictions.yaml\` 中对应条目的 status
 
 ## 判断标准
 - 偏差 > 认可（"你错了" 比 "你对了" 更值得记录）

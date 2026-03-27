@@ -15,7 +15,9 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = join(__dirname, '..');
+const PLUGIN_ROOT = join(__dirname, '..');
+// 状态文件在 ~/.thinker/（系统级），提示词/skill 在插件目录
+const THINKER_HOME = process.env.THINKER_HOME || join(process.env.HOME, '.thinker');
 
 function readSafe(filePath) {
   try {
@@ -32,19 +34,19 @@ function buildThinkerContext() {
   const parts = [];
 
   // 1. 身份（必须加载）
-  const identity = readSafe(join(ROOT, 'identity', 'core.yaml'));
+  const identity = readSafe(join(THINKER_HOME, 'identity', 'core.yaml'));
   if (identity) {
     parts.push('## Thinker Identity\n```yaml\n' + identity + '\n```');
   }
 
   // 2. 信念图谱（必须加载）
-  const beliefs = readSafe(join(ROOT, 'world_model', 'beliefs.yaml'));
+  const beliefs = readSafe(join(THINKER_HOME, 'world_model', 'beliefs.yaml'));
   if (beliefs) {
     parts.push('## Thinker Beliefs\n```yaml\n' + beliefs + '\n```');
   }
 
   // 3. 推理偏好（仅加载标签摘要，完整版在 /think skill 中按需加载）
-  const heuristics = readSafe(join(ROOT, 'world_model', 'heuristics.yaml'));
+  const heuristics = readSafe(join(THINKER_HOME, 'world_model', 'heuristics.yaml'));
   if (heuristics) {
     // 只提取 label 和 description，不加载完整 procedure
     const labels = [];
@@ -64,19 +66,19 @@ function buildThinkerContext() {
   }
 
   // 4. 未解决的张力（如果存在）
-  const tensions = readSafe(join(ROOT, 'world_model', 'tensions.yaml'));
+  const tensions = readSafe(join(THINKER_HOME, 'world_model', 'tensions.yaml'));
   if (tensions) {
     parts.push('## Active Tensions\n```yaml\n' + tensions + '\n```');
   }
 
   // 5. 最近学到的模式（如果存在，只加载最近5条）
-  const patterns = readSafe(join(ROOT, 'memory', 'patterns.yaml'));
+  const patterns = readSafe(join(THINKER_HOME, 'memory', 'patterns.yaml'));
   if (patterns) {
     parts.push('## Recent Patterns\n```yaml\n' + patterns + '\n```');
   }
 
   // 6. 待验证的预测（如果存在，只加载 pending 的）
-  const predictions = readSafe(join(ROOT, 'memory', 'predictions.yaml'));
+  const predictions = readSafe(join(THINKER_HOME, 'memory', 'predictions.yaml'));
   if (predictions) {
     parts.push('## Pending Predictions\n```yaml\n' + predictions + '\n```');
   }
@@ -93,8 +95,9 @@ function buildThinkerContext() {
 6. **声量控制**: 低(微调) | 中(引导) | 高(强干预，仅在检测到逻辑矛盾/关键假设未验证时)
 
 **铁律**: 不讨好，不顺从，不同意时给理由。
-**动词引擎**: 遇到关键认知动词（分析、判断、理解等），可读取 verb_engine/ 展开为操作序列。
-**深度思考**: 需要完整 Thinker 流程时，使用 /think skill。`);
+**动词引擎**: 遇到关键认知动词（分析、判断、理解等），可读取 \`${THINKER_HOME}/verb_engine/\` 展开为操作序列。
+**深度思考**: 需要完整 Thinker 流程时，使用 /think skill。
+**状态目录**: \`${THINKER_HOME}\`（所有持久化写操作指向这里）`);
 
   if (parts.length === 0) {
     return null;
